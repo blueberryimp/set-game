@@ -1,18 +1,117 @@
 <html>
 <head>
-<title> SET </title>
-<link rel="stylesheet" href="/static/set_style.css" type="text/css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="static/js/set.js"></script>
-</head>
-{% block body %}
- 
-<h1> Play SET now! :P </h2>
-<body>
-<div id="cardBox"/>
-<script type="text/javascript">
- addCards("cardBox");
-</script>
-{% endblock %}
+  <title>Let's play SET!</title>
+  
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="static/style.css">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+  <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js'></script>
+
+      <script src="script10.js"></script>
+
+
+
 </body>
+
+
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">SET</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Combinatorics</a></li>
+      <li><a href="#">Game Rules!</a></li>
+    </ul>
+  </div>
+
+{% if "user_id" in session %}
+    <a href="/logout">Logout</a>
+{% else %}
+    <a type="button" class="btn btn-outline-primary btn-sm active" href='/register'>Sign Up!</a>
+    <br><br>
+    <a type="button" class="btn btn-outline-primary btn-sm active" href='/login'>Log in!</a>
+{% endif %}
+
+</nav>
+  
+<div class="container-fluid">
+
+
+</div>
+  
+<div class='row'>
+<div class='col-lg-2'>
+
+</div>
+<div class='col-lg-2'>
+<img src='static/cards/gde2.gif' class = 'img-rounded'/>
+</div>
+<div class='col-lg-2'>
+<img src='static/cards/gde3.gif' class = 'img-rounded'/>
+</div>
+<div class='col-lg-2'>
+<img src='static/cards/gde2.gif' class = 'img-rounded'/>
+</div>
+
+
+<div class='row'>
+<div class='col-lg-2'>
+<img src='static/cards/gde1.gif' class = 'img-rounded' class = 'img-response'/>
+</div>
+</div>
+<div class='col-lg-2'>
+<img src='static/cards/gde2.gif' class = 'img-rounded'/>
+</div>
+<div class='col-lg-2'>
+<img src='static/cards/gde3.gif' class = 'img-rounded'/>
+</div>
+<div class='col-lg-2'>
+<img src='static/cards/gde2.gif' class = 'img-rounded'/>
+</div>
+
+
+<div class='row'>
+<div class='col-lg-2'>
+<img src='static/cards/gde1.gif' class = 'img-rounded' class = 'img-response'/>
+</div>
+</div>
+<div class='col-lg-2'>
+<img src='static/cards/gde2.gif' class = 'img-rounded'/>
+</div>
+<div class='col-lg-2'>
+<img src='static/cards/gde3.gif' class = 'img-rounded'/>
+</div>
+<div class='col-lg-2'>
+<img src='static/cards/gde2.gif' class = 'img-rounded'/>
+</div>
+<div class='col-lg-2'>
+<img src='static/cards/gde2.gif' class = 'img-rounded'/>
+</div>
+
+</div>
+
+
+<hr>
+
+{% for flash in get_flashed_messages() %}
+  {{ flash }}
+{% endfor %}
+
+{% block content %}
+
+{% endblock %}
+
+
+<img id="imageid" src="">
+
+
+  </body>
 </html>

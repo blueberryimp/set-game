@@ -1,15 +1,36 @@
+var c = color; 
+var p = pattern; 
+var s = shape;
+var n = int number;
+var dir = 'static/images';
+var fileExtension = '.gif';
+//instance variables 
+//each card needs its own set of these variables 
+
+function makeCards() {
+    this.colors = colors;
+    this.patterns = patterns;
+    this.shapes = shapes;
+    this.numbers = numbers); 
+  }
+
+function displayCard() {
+  return color, pattern, shape, number;
+    
+function getCardImage() { 
+  var cardImage =  dir + color + shape + pattern + number + fileExtension;
+  return cardImage;
+}
 
 
+//create a deck of set card objects 
+function createDeck() {
+  var deck = cardImage[]; //construct array empty deck reference
+  var colors = ['red', 'purple', 'green'];
+  var patterns = ['filled', 'empty', 'stripes'];
+  var shapes = ['squiggle', 'oval', 'triangle'];
+  var numbers = [0,1,2];
 
-var deck = new Array();
-var colors = ['red', 'purple', 'green'];
-var patterns = ['filled', 'empty', 'stripes'];
-var shapes = ['squiggle', 'oval', 'triangle'];
-var numbers = [0,1,2]; 
-
-
-function deck() { 
-  var deck = new Array(); 
 
   for( var c = 0; s < colors.length; c++ ) 
   {
@@ -23,20 +44,9 @@ function deck() {
           Shape: shapes[s], Number: numbers[n]};
 
           deck.push(card); 
-           
+
+    return deck; 
 
 
-//fisher-yates shuffle 
-function shuffle (array) {
-  var i = 0
-    , j = 0
-    , temp = null
 
-  for (i = deck.length - 1; i > 0; i -= 1) {
-    j = Math.floor(Math.random() * (i + 1))
-    temp = deck[i]
-    deck[i] = deck[j]
-    deck[j] = temp
-  }
-}
 

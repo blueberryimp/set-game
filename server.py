@@ -6,6 +6,8 @@ from model import connect_to_db, db, User, Card, Gamestate
 app = Flask(__name__)
 app.secret_key = 'xkcd'
 
+deck = ['static/cards/ged1.gif', 'static/cards/ged2.gif', 'static/cards/ged3.gif', 'static/cards/gds2.gif']
+
 @app.route('/')
 def index():
         return render_template('index.html')
@@ -50,7 +52,6 @@ def login():
     username = str(request.form['username'])
     password = str(request.form['password'])
 
-    Session = sessionmaker(bind=engine)
     s = Session()
     query = s.query(User).filter(User.username.in_([username]), User.password.in_([password]))
     user = query.first()
@@ -65,8 +66,22 @@ def logout():
     session['logged_in'] = False
     return index()
 
+@app.route('/cards')
+def show_card():
+    cards = Card.query.all()
+    return render_template('cards.html', cards=cards)
+
+@app.route('/users')
+def show_users():
+    user = User.query.all()
+    return render_template('user.html', user=user)
+
+@app.route('/deck')
+def deck():
+    deck = random.choice(deck)
+    return deck
+
+
 if __name__ == "__main__":
     connect_to_db(app)
     app.run(debug=True, host='0.0.0.0', port=5000)
-
-  

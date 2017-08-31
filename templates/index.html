@@ -85,7 +85,7 @@ $('.shuffle-btn').on( 'click', function() {
 });
 
 $(window).on('load', function() {
-  var $cardsOnBoard = shuffle(deck).splice(0, 16);
+  var $cardsOnBoard = shuffle(deck).splice(0, 12);
   $grid.isotope( 'appended', $cardsOnBoard );
 });
 

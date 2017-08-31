@@ -2,7 +2,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 #connection to PostgresQL database through flask sqlalchemy helper library
 
-DB_URI = "postgresql:///game"
+DB_URI = "postgresql:///setgame"
 
 db = SQLAlchemy()
 
@@ -18,13 +18,12 @@ class User(db.Model):
     lname = db.Column(db.String(64), nullable=False)
     email = db.Column(db.String(64), nullable=False)
     password = db.Column(db.String(64), nullable=False)
-    age = db.Column(db.Integer, nullable=True)
 
     def __repr__(self):
         """Provide helpful representation when printed."""
 
-        return "<User user_id=%s fname=%s, lname=%s, username=%s email=%s age=%d>" % (
-            self.user_id, self.fname, self.lname, self.username, self.email, self.age)
+        return "<User user_id=%s fname=%s, lname=%s, username=%s email=%s>" % (
+            self.user_id, self.fname, self.lname, self.username, self.email)
 
 class Card(db.Model):
     """Card for set game website."""
@@ -44,6 +43,34 @@ class Card(db.Model):
 
         return "<Card card_id=%s card_name=%s card_image=%s color=%s shape=%s pattern=%s number=%s>" % (
             self.card_id, self.card_name, self.card_image, self.color, self.shape, self.pattern, self.number)
+
+    @property
+    def serialize(self):
+        return {
+            'card_id': self.card_id,
+            'card_name': self.card_name,
+            'card_image': self.card_image,
+            'color': self.color,
+            'shape': self.shape,
+            'pattern': self.pattern,
+            'number': self.number,
+
+        }
+
+class Cardstate(db.Model):
+    __tablename__ = "cardstate"
+
+    cardstate_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    gamestate_id = db.Column(db.Integer, db.ForeignKey('gamestate.gamestate_id'), nullable=False, index=True)
+    card_status = db.Column(db.Boolean, nullable=False)
+
+    game_card = db.relationship("Gamestate", backref=db.backref('cardstate'))
+
+    def __repr__(self):
+        """Provide helpful representation when printed."""
+
+        return "<Gamestate cardstate_id=%s gamestate_id=%s card_status=%s>" % (
+            self.cardstate_id, self.gamestate_id, self.card_status)
 
 
 class Gamestate(db.Model):

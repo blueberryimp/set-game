@@ -1,0 +1,160 @@
+<link rel='stylesheet' href="https://fonts.googleapis.com/css?family=Patrick+Hand+SC)">
+
+
+body {
+    font-family: 'Patrick Hand SC', cursive;
+}
+
+.portfolioFilter a { 
+    margin-right: 10px; 
+	color:#666;
+	text-decoration:none;
+}
+
+.portfolioFilter a.current { 
+    font-weight:bold;
+}
+
+
+img {
+    margin:5px;
+}
+
+.isotope-item {
+    z-index: 2;
+}
+.isotope-hidden.isotope-item {
+    pointer-events: none;
+    z-index: 1;
+}
+.isotope,
+.isotope .isotope-item {
+  /* change duration value to whatever you like */
+
+    -webkit-transition-duration: 0.8s;
+    -moz-transition-duration: 0.8s;
+    transition-duration: 0.8s;
+}
+.isotope {
+    -webkit-transition-property: height, width;
+    -moz-transition-property: height, width;
+    transition-property: height, width;
+}
+.isotope .isotope-item {
+    -webkit-transition-property: -webkit-transform, opacity;
+    -moz-transition-property: -moz-transform, opacity;
+    transition-property: transform, opacity;
+}
+
+.grid-item { 
+      background:transparent;
+      height:100px;
+      width: 150px;
+      margin:20px;
+      color:#41403E;
+      box-shadow: 30px 30px 30px -20px hsla(0,0%,0%,1);
+      border-radius: 260px 20px 230px 20px/20px 230px 20px 260px;
+}
+h1{
+font-size: 60px; 
+font-family: 'Patrick Hand SC', cursive;
+text-align: center;
+}
+
+.grid {
+  background: #eee;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.card {
+      background:transparent;
+      height:100px;
+      width: 150px;
+      margin:20px;
+      color:#41403E;
+      box-shadow: 30px 30px 30px -20px hsla(0,0%,0%,1);
+      border-radius: 260px 20px 230px 20px/20px 230px 20px 260px;
+}
+
+
+.shuffle-btn {
+font-size: 30px; 
+font-family: 'Patrick Hand SC', cursive;
+}
+
+.append-btn {
+font-size: 30px; 
+font-family: 'Patrick Hand SC', cursive;
+}
+.players-btn {
+font-size: 30px; 
+font-family: 'Patrick Hand SC', cursive;
+}
+
+
+/* .grid-item .oval {
+  width: 100px; 
+  height: 50px; 
+  margin: 10px;
+  border-radius: 100px / 50px;
+  border-style: solid;
+  border-width: 3px;
+}
+
+.grid-item .square {
+   position: absolute;
+   width: 65px; 
+   height: 65px;
+   border-style: solid;
+   border-width: 5 px;
+  }
+
+.grid-item .diamond {
+    width: 70px;
+    height: 70px;
+    border-style: solid;
+    border-width: 5 px;
+    transform: rotate(45deg);
+} */
+
+.grid-item .filled {
+  background-color: green;
+}
+
+.grid-item .empty {
+  background-color: white;
+}
+
+.grid-item .striped {
+background: repeating-linear-gradient(
+  -40deg,
+  green,
+  white 3px,
+  white 8px
+);
+}
+
+.grid-item .number {
+  position: absolute;
+  right: 8px;
+  top: 5px;
+}
+
+
+.grid-item-green{ 
+  background: green; 
+  background: hsl(   0, 100%, 50%); }
+
+.grid-item-red{ 
+  background: green; 
+  background: hsl(   0, 100%, 50%); }
+
+.grid-item-purple{ 
+  background: green; 
+  background: hsl(   0, 100%, 50%); }
+
+
+
+ */

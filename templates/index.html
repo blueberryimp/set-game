@@ -17,16 +17,17 @@
 
 
 
-  <div class='grid'>
     {% for card in cards %}
-    <span><img  class = 'cards' src= '{{ card.card_image }}' name= '{{card.card_name}}' color='{{card.color}}' shape='{{card.shape}}' pattern='{{card.pattern}}' number="{{card.number}}"></span>
+  <img  class = 'cards' src= '{{ card.card_image }}' name= '{{card.card_name}}' color='{{card.color}}' shape='{{card.shape}}' pattern='{{card.pattern}}' number="{{card.number}}">
     {% endfor %}
-  </div>
+
+    <div class='grid'>
+</div>
+
 
 
 <script>
 'use strict';
-//hide image objects
 $('.cards').hide();
 $('.msg').hide();
 
@@ -74,27 +75,33 @@ var wins = 0;
     window.setInterval(clock,1000);
 
 
+
 var $grid = $('.grid').isotope({
   itemSelector: '.cards',
+  layoutMode: 'masonry',
    masonry: {
-    columnWidth: 150,
-  }
+          columnWidth: 300
+      }
+    });
+
+$(window).on('load', function() {
+  var $cardsOnBoard = shuffle(deck).splice(0, 12);
+  $grid.isotope( 'appended', $cardsOnBoard );
+   $grid.append($cardsOnBoard);
+    $grid.isotope('layout');
 });
 
 $('.shuffle-btn').on( 'click', function() {
   $grid.isotope('shuffle');
 });
 
-$(window).on('load', function() {
-  var $cardsOnBoard = shuffle(deck).splice(0, 12);
-  $grid.isotope( 'appended', $cardsOnBoard );
-});
-
 $('.append-btn').on( 'click', function() {
   var $threeCards = shuffle(deck).splice(0, 3);
+  $grid.append($threeCards);
   $grid.isotope( 'appended', $threeCards );
-});
+  $grid.isotope('layout');
 
+});
 
  var numCardsSelected = 0;
 
@@ -180,6 +187,7 @@ function checkAttribute(cards) {
          setsFound ++;
     });
      $('.message').html(setsFound);
+     $grid.isotope('layout');
 
 
   }else{
@@ -192,7 +200,6 @@ function checkAttribute(cards) {
 
     }
 }
-
 
   
 </script>

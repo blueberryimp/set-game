@@ -82,6 +82,7 @@ class Gamestate(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable=False, index=True)
     score = db.Column(db.Integer, nullable=False)
 
+    #one(user) to many(gamestates)
     user = db.relationship("User", backref=db.backref('gamestate'))
 
     def __repr__(self):

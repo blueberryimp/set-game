@@ -83,6 +83,22 @@ def show_users():
     return render_template('user.html', users=users)
 
 
+@app.route('/gamestate', methods=['POST'])
+def gamestate_process():
+    score = int(request.form['score'])
+    gamestate= Gamestate(user_id=session["user_id"], score=score)
+    db.session.add(gamestate)
+    db.session.commit()
+    return jsonify(result=score)
+
+
+
+@app.route('/gamestate', methods=['GET'])
+def gamestate():
+    gamestate = Gamestate.query.all()
+    return render_template('gamestate.html', gamestate=gamestate)
+
+
 
 
 if __name__ == "__main__":

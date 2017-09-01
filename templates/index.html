@@ -6,8 +6,10 @@
 <button class="shuffle-btn">Shuffle Cards!</button>
 <button class="append-btn">Add  Cards!</button>
 <br><br>
-<textarea class="message"> Sets found:  </textarea>
+<textarea class="score"></textarea>
 <button class="start-btn">Start timer!</button>
+<button class="score-btn">Score button!</button>
+<span id=result>?</span>
 
 <h2 class='timer'></h2>
 
@@ -24,12 +26,15 @@
     <div class='grid'>
 </div>
 
-
+  <div class="alert alert-danger" id='nonset-alert'>
+    <strong>Noooo!</strong> Not a set, silly! :P <a href="#enter link for what a set is" class="alert-link">What's a set?</a>.
+  </div>
 
 <script>
 'use strict';
 $('.cards').hide();
 $('.msg').hide();
+$('#nonset-alert').hide();
 
 //returns card images in an array called deck
 var deck = $('.cards').map(function(card) {
@@ -55,7 +60,7 @@ function shuffle(deck) {
 
 
 var setsFound = 0;
-var wins = 0;
+
 
 //second timer
     var sec = 0;
@@ -74,8 +79,6 @@ var wins = 0;
     };
     window.setInterval(clock,1000);
 
-
-
 var $grid = $('.grid').isotope({
   itemSelector: '.cards',
   layoutMode: 'masonry',
@@ -83,6 +86,7 @@ var $grid = $('.grid').isotope({
           columnWidth: 300
       }
     });
+
 
 $(window).on('load', function() {
   var $cardsOnBoard = shuffle(deck).splice(0, 12);
@@ -178,30 +182,39 @@ function checkAttribute(cards) {
   })
 
   if (attrScore === 4 ) {
-    var setsFound = 0;
+
     console.log("You found a Set");
+     setsFound ++;
     cards.forEach(function (card) {
-         card.toggle("explode");
+         card.toggle("explode", 1000);
          card.attr("isSelected", false);
-      //why is it adding 3?
-         setsFound ++;
     });
      $('.message').html(setsFound);
      $grid.isotope('layout');
-
+      var $threeCards = shuffle(deck).splice(0, 3);
+     $grid.append($threeCards);
+     $grid.isotope( 'appended', $threeCards );
 
   }else{
     console.log("You have not found a Set");
          cards.forEach(function (card) {
-            card.removeClass('selected');
-            card.attr("isSelected", false);
-            $('.msg').show().fadeOut(2000);
+          card.effect("bounce", 1000);
+          card.removeClass('selected', 200);
+          card.attr("isSelected", false);
         });
+  // $('.msg').show().fadeOut(5000);
+  $('#nonset-alert').show().fadeOut(5000);
 
     }
 }
 
-  
+$('.score-btn').on('click', function () {
+  // $.getJSON($SCRIPT_ROOT + '/gamestate', {
+  var score = {'score': $('.score').val()}
+  $.post('/gamestate', score, function(data) {
+    $('#result').text(data.result);
+  });
+})
 </script>
 
 {% endblock %}

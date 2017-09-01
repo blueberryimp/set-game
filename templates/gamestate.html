@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>SET GAME DATA </h2>
+
+
+
+<!-- {% for games in gamestate %} -->
+{% for game in gamestate %}
+
+Score: {{ game.score }}
+
+
+
+{% endfor %}
+<!-- 
+{% endfor %} -->
+
+{% endblock %}
+
+

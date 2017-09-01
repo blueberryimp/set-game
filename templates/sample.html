@@ -14,14 +14,13 @@
 
 <h1>Play SET!</h1>
 
+<div class='grid'>
+</div>
 
-
-
-  <div class='grid'>
     {% for card in cards %}
-    <span><img  class = 'cards' src= '{{ card.card_image }}' name= '{{card.card_name}}' color='{{card.color}}' shape='{{card.shape}}' pattern='{{card.pattern}}' number="{{card.number}}"></span>
+   <img  class = 'cards' src= '{{ card.card_image }}' name= '{{card.card_name}}' color='{{card.color}}' shape='{{card.shape}}' pattern='{{card.pattern}}' number="{{card.number}}">
     {% endfor %}
-  </div>
+
 
 
 <script>
@@ -74,11 +73,11 @@ var wins = 0;
     window.setInterval(clock,1000);
 
 
-var $grid = $('.grid').isotope({
+// init Packery
+var $grid = $('.grid').packery({
   itemSelector: '.cards',
-   masonry: {
-    columnWidth: 150,
-  }
+  columnWidth: 200
+  // options...
 });
 
 $('.shuffle-btn').on( 'click', function() {
@@ -87,12 +86,17 @@ $('.shuffle-btn').on( 'click', function() {
 
 $(window).on('load', function() {
   var $cardsOnBoard = shuffle(deck).splice(0, 12);
-  $grid.isotope( 'appended', $cardsOnBoard );
+  $grid.packery( 'appended', $cardsOnBoard );
+   $grid.append($cardsOnBoard);
+  $grid.packery('layout');
 });
 
 $('.append-btn').on( 'click', function() {
   var $threeCards = shuffle(deck).splice(0, 3);
-  $grid.isotope( 'appended', $threeCards );
+  $grid.append($threeCards);
+  $grid.packery( 'appended', $threeCards );
+  $grid.packery('layout');
+
 });
 
 

@@ -18,6 +18,7 @@ text-align: center;
   margin-right: auto;
 }
 
+
 .cards{
       background:transparent;
       height:60px;
@@ -77,3 +78,4 @@ font-family: 'Patrick Hand SC', cursive;
   color: hsla(9, 87%, 46%, 1);
   border: 1px solid hsla(10, 90%, 50%, 0.7);
 }
+

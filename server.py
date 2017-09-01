@@ -18,6 +18,12 @@ def index():
     #cards = Card.query.order_by(func.random()).limit(12).all()
     return render_template('index.html', cards=cards)
 
+@app.route('/sample')
+def sample():
+    cards = Card.query.order_by(func.random()).all()
+    #cards = Card.query.order_by(func.random()).limit(12).all()
+    return render_template('sample.html', cards=cards)
+
 
 @app.route('/register', methods=['GET'])
 def register_form():

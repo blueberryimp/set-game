@@ -93,7 +93,6 @@ def show_users():
 #     return render_template("profile.html", user=user)
 
 
-
 @app.route('/gamestate', methods=['POST'])
 def gamestate_process():
     score = int(request.form.get('score'))

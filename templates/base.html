@@ -6,7 +6,8 @@
 <!-- sets to unicode -->
   <meta charset="utf-8">
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
 <link rel="stylesheet" type="text/css" href="static/style.css">
 
 <script src ="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -19,22 +20,50 @@
 
 <body>
 
-{% if "user_id" in session %}
-    <a href="/logout">Logout</a>
-{% else %}
-    <a type="button" class="btn btn-outline-primary btn-sm active" href='/register'>Sign Up!</a>
-    <a type="button" class="btn btn-outline-primary btn-sm active" href='/login'>Log in!</a>
-{% endif %}
+    <body>
+<nav class="navbar navbar-default" style="margin-bottom: 0px">
 
-<hr>
+    <div class="container-fluid">
 
-{% for flash in get_flashed_messages() %}
-  {{ flash }}
-{% endfor %}
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">
+                <span class="glyphicon glyphicon-th"></span>
+                SET PUZZLE
+            </a>
+        </div>
 
+        <div class="collapse navbar-collapse"
+
+             id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+
+                <li><a href='#'>Game Rules </a></li>
+                <li><a href="/users">All Users</a></li>
+                <li><a href="/gamestate">Games Data </a></li>
+                <li><a href='#'>Resources </a></li>
+            </ul>
+        <ul class="nav navbar-nav navbar-right">
+              {% if "user_id" in session %}
+                  <li><a href="/users/{{ session['user_id'] }}">Profile</a></li>
+                  <li><a href="/logout">Logout</a></li>
+              {% else %}
+                  <li><a href="/register">Register</a></li>
+                  <li><a href="/login">Login</a></li>
+              {% endif %}
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+<div id="extending">
+    {% for flash in get_flashed_messages() %}
+      <div class="alert alert-danger" style="width:90%; margin:0 auto;">{{ flash }}</div>
+    {% endfor %}
 {% block content %}
-    Put your body here.
 {% endblock %}
+</div>
+
 
 </body>
 </html>

@@ -5,17 +5,27 @@
 
 
 
-<!-- {% for games in gamestate %} -->
-{% for game in gamestate %}
 
-Score: {{ game.score }}
-User_id: {{ }}
+{% for game in gamestate %}
+<div>
+
+<span>[Username]: {{ game.user.username }}</span>
+
+<span>[Total Sets found]: {{ game.score }}</span>
+
+<!-- 
+<span>[Start Time]: {{ game.start_time }}</span>
+
+<span>[End Time]: {{ game.end_time }}</span>
+
+<span>[Date]: {{ game.date_time }}</span>
+ -->
+</div>
 
 
 
 {% endfor %}
-<!-- 
-{% endfor %} -->
+
 
 {% endblock %}
 

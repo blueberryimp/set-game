@@ -1,49 +1,50 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html>
-    <head>
-        <title>Play SET now! :P</title>
-   <link rel="stylesheet" href="/static/style.css" type="text/css">
+{% extends 'base.html' %}
+{% block content %}
+<div class="well spaced" style="width:40%;">
+<h1>Register</h1>
 
- 
-    </head>
-    <body>
- 
- 
-<div class="container">
- 
- 
-  <h2>Register to play SET!</h2>
-  <form  action="/register" method="post" role="form">
+<form action="register" method="POST">
 
-<!-- note to self....add bootstrap for the form groups >< -->
-    <div class="form-group">
-      <label for="username">Username:</label>
-      <input type="text" class="form-control" id="username" name="username" placeholder="username">
-
-      <br><br>
-      <label for="fname">First Name:</label>
-      <input type="text" class="form-control" id="fname" name="fname" placeholder="first name">
-
-      <br><br>
-      <label for="lname">Last Name:</label>
-      <input type="text" class="form-control" id="lname" name="lname" placeholder="last name">
-
-      <br><br>
-      <label for="email">Email:</label>
-      <input type="email" class="form-control" id="email" name="email" placeholder="email">
-
-      <br><br>
-      <label for="password">Password:</label>
-      <input type="password" class="form-control" id="password" name="password" placeholder="password">
- 
-     <br><br>
-    
+     <div class="form-group">
+        <label>
+            Username
+            <input type="username" name="username" class="form-control">
+        </label>
     </div>
-    <button type="submit" class="btn btn-success" value="Register">Sign Up</button>
-  </form>
- 
-          
+
+    <div class="form-group">
+        <label>
+            First Name
+            <input type="fname" name="fname" class="form-control">
+        </label>
+    </div>
+
+        <div class="form-group">
+        <label>
+            Last Name
+            <input type="lname" name="lname" class="form-control">
+        </label>
+    </div>
+
+          <div class="form-group">
+        <label>
+            Email
+            <input type="email" name="email" class="form-control">
+        </label>
+    </div>
+
+    <div class="form-group">
+        <label>
+            Password
+            <input type="password" name="password" class="form-control">
+        </label>
+    </div>
+
+
+    <div class="form-group">
+        <input type="submit" value="Register!" class="btn btn-danger">
+    </div>
+
+</form>
 </div>
-</div>
-</body>
-</html>
+{% endblock %}

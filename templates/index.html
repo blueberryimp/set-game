@@ -2,21 +2,24 @@
 
 
 {% block content %}
-<div class="msg error">Sorry! is not a set!</div>__
-<button class="shuffle-btn">Shuffle Cards!</button>
-<button class="append-btn">Add  Cards!</button>
-<br><br>
-<textarea class="score"></textarea>
-<button class="start-btn">Start timer!</button>
-<button class="score-btn">Score button!</button>
-<span id=result>?</span>
 
+<!-- <div class="msg error">Sorry! is not a set!</div>
+<br><br> -->
 <h2 class='timer'></h2>
 
+<button id='start-timer'type="button" class="btn btn-outline-secondary btn-md center-block">Start!</button>
+<br>
+<button id='end-timer'type="button" class="btn btn-outline-secondary btn-md center-block">Finished!</button>
 
-<h1>Play SET!</h1>
+Total Sets Found:<span id='result' class='.score'>0</span>
 
+<br>
+<button id='score-btn'type="button" class="btn btn-outline-secondary btn-sm">Save score!</button>
 
+<br><br>
+
+<button id='shuffle'type="button" class="btn btn-outline-primary btn-lg">Shuffle cards!</button>
+<button id='append'type="button" class="btn btn-outline-secondary btn-lg">Add more cards!</button>
 
 
     {% for card in cards %}
@@ -62,22 +65,32 @@ function shuffle(deck) {
 var setsFound = 0;
 
 
-//second timer
-    var sec = 0;
-    var min = 0;
-    function clock() {
-      sec++;
-     $('.timer').html(min + ":" + sec); 
-      if (sec == 60) {
-        sec = 0;
-        min++;
-      }
-      if (min === 5) {
-        min = 0;
-        $('.timer').html('you lose!'); 
-      }
-    };
-    window.setInterval(clock,1000);
+// //second timer
+//     var sec = 0;
+//     var min = 0;
+//     function clock() {
+//       sec++;
+//      $('.timer').html(min + ":" + sec); 
+//       if (sec == 60) {
+//         sec = 0;
+//         min++;
+//       }
+//       if (min === 5) {
+//         min = 0;
+//         $('.timer').html('you lose!'); 
+//       }
+//     };
+//     window.setInterval(clock,1000);
+
+var start = new Date;
+
+setInterval(function() {
+    $('.timer').text((new Date - start) / 1000 + " Seconds");
+}, 1000);
+
+
+
+
 
 var $grid = $('.grid').isotope({
   itemSelector: '.cards',
@@ -95,11 +108,11 @@ $(window).on('load', function() {
     $grid.isotope('layout');
 });
 
-$('.shuffle-btn').on( 'click', function() {
+$('#shuffle').on( 'click', function() {
   $grid.isotope('shuffle');
 });
 
-$('.append-btn').on( 'click', function() {
+$('#append').on( 'click', function() {
   var $threeCards = shuffle(deck).splice(0, 3);
   $grid.append($threeCards);
   $grid.isotope( 'appended', $threeCards );
@@ -189,7 +202,7 @@ function checkAttribute(cards) {
          card.toggle("explode", 1000);
          card.attr("isSelected", false);
     });
-     $('.message').html(setsFound);
+     $('#result').html(setsFound);
      $grid.isotope('layout');
       var $threeCards = shuffle(deck).splice(0, 3);
      $grid.append($threeCards);
@@ -202,15 +215,14 @@ function checkAttribute(cards) {
           card.removeClass('selected', 200);
           card.attr("isSelected", false);
         });
-  // $('.msg').show().fadeOut(5000);
   $('#nonset-alert').show().fadeOut(5000);
 
     }
 }
 
-$('.score-btn').on('click', function () {
-  // $.getJSON($SCRIPT_ROOT + '/gamestate', {
-  var score = {'score': $('.score').val()}
+$('#score-btn').on('click', function () {
+  var score = {'score': $('#result').html()}
+  console.log(score);
   $.post('/gamestate', score, function(data) {
     $('#result').text(data.result);
   });

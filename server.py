@@ -55,10 +55,10 @@ def login_form():
 @app.route('/login', methods=['POST'])
 def login():
 
-    username = str(request.form['username'])
+    email = str(request.form['email'])
     password = str(request.form['password'])
 
-    user = User.query.filter_by(username=username).first()
+    user = User.query.filter_by(email=email).first()
     if not user:
         flash("No such user")
         return redirect("/login")
@@ -70,22 +70,33 @@ def login():
     session["user_id"] = user.user_id
 
     flash("Logged in")
-    return redirect('/')
+    return redirect("/users/%s" % user.user_id)
 
-@app.route("/logout")
+@app.route('/logout')
 def logout():
-    session['logged_in'] = False
-    return index()
+    """Log out."""
+
+    del session["user_id"]
+    flash("Logged Out.")
+    return redirect("/")
 
 @app.route('/users')
 def show_users():
     users = User.query.all()
     return render_template('user.html', users=users)
 
+# @app.route("/users/<int:user_id>")
+# def user_detail(user_id):
+#     """Show info about user."""
+
+#     user = User.query.options(db.joinedload('gamestate').joinedload('users')).get(user_id)
+#     return render_template("profile.html", user=user)
+
+
 
 @app.route('/gamestate', methods=['POST'])
 def gamestate_process():
-    score = int(request.form['score'])
+    score = int(request.form.get('score'))
     gamestate= Gamestate(user_id=session["user_id"], score=score)
     db.session.add(gamestate)
     db.session.commit()

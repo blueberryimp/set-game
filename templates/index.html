@@ -9,12 +9,11 @@
 
 <button id='start-timer'type="button" class="btn btn-outline-secondary btn-md center-block">Start!</button>
 <br>
-<button id='end-timer'type="button" class="btn btn-outline-secondary btn-md center-block">Finished!</button>
 
 Total Sets Found:<span id='result' class='.score'>0</span>
 
 <br>
-<button id='score-btn'type="button" class="btn btn-outline-secondary btn-sm">Save score!</button>
+<button id='score-btn'type="button" class="btn btn-outline-secondary btn-sm center-block">Save score!</button>
 
 <br><br>
 
@@ -65,30 +64,28 @@ function shuffle(deck) {
 var setsFound = 0;
 
 
-// //second timer
-//     var sec = 0;
-//     var min = 0;
-//     function clock() {
-//       sec++;
-//      $('.timer').html(min + ":" + sec); 
-//       if (sec == 60) {
-//         sec = 0;
-//         min++;
-//       }
-//       if (min === 5) {
-//         min = 0;
-//         $('.timer').html('you lose!'); 
-//       }
-//     };
-//     window.setInterval(clock,1000);
-
-var start = new Date;
+$('#start-timer').on('click', function() {
+  var start = new Date;
 
 setInterval(function() {
     $('.timer').text((new Date - start) / 1000 + " Seconds");
 }, 1000);
 
+});
 
+$('#score-btn').on('click', function() {
+$('.timer').html('0');
+$('.timer').hide();
+$('#start-timer').hide();
+$('#score-btn').html('score saved!');
+});
+
+
+
+
+
+
+$('.timer').html('0:00:00');
 
 
 

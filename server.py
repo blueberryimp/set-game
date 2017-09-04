@@ -70,7 +70,7 @@ def login():
     session["user_id"] = user.user_id
 
     flash("Logged in")
-    return redirect("/users/%s" % user.user_id)
+    return redirect("/")
 
 @app.route('/logout')
 def logout():
@@ -80,7 +80,7 @@ def logout():
     flash("Logged Out.")
     return redirect("/")
 
-@app.route('/users')
+@app.route("/users/<user_id>")
 def show_users():
     users = User.query.all()
     return render_template('user.html', users=users)

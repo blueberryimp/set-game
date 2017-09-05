@@ -37,14 +37,14 @@
              id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
 
-                <li><a href='#'>Game Rules </a></li>
+                <li><a href='/gamerules'>Game Rules </a></li>
                 <li><a href="/users">All Users</a></li>
                 <li><a href="/gamestate">Games Data </a></li>
-                <li><a href='#'>Resources </a></li>
+      
             </ul>
         <ul class="nav navbar-nav navbar-right">
               {% if "user_id" in session %}
-                  <li><a href="/users/{{ session['user_id'] }}">Profile</a></li>
+                 <!--  <li><a href="/users/{{ session['user_id'] }}">Profile</a></li> -->
                   <li><a href="/logout">Logout</a></li>
               {% else %}
                   <li><a href="/register">Register</a></li>

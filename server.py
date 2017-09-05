@@ -1,3 +1,4 @@
+
 from jinja2 import StrictUndefined
 from flask import Flask, render_template, request, flash, redirect, session, jsonify
 from flask_debugtoolbar import DebugToolbarExtension
@@ -18,10 +19,9 @@ def index():
     #cards = Card.query.order_by(func.random()).limit(12).all()
     return render_template('index.html', cards=cards)
 
-@app.route('/sample')
-def sample():
-    cards = Card.query.order_by(func.random()).all()
-    return render_template('sample.html', cards=cards)
+@app.route('/gamerules')
+def gamerules():
+    return render_template('gamerules.html')
 
 
 @app.route('/register', methods=['GET'])
@@ -80,18 +80,10 @@ def logout():
     flash("Logged Out.")
     return redirect("/")
 
-@app.route("/users/<user_id>")
+@app.route("/users")
 def show_users():
     users = User.query.all()
     return render_template('user.html', users=users)
-
-# @app.route("/users/<int:user_id>")
-# def user_detail(user_id):
-#     """Show info about user."""
-
-#     user = User.query.options(db.joinedload('gamestate').joinedload('users')).get(user_id)
-#     return render_template("profile.html", user=user)
-
 
 @app.route('/gamestate', methods=['POST'])
 def gamestate_process():

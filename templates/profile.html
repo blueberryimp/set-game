@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2> Profile </h2>
+
+
+{% for game in gamestate %}
+<div>
+
+<span>[Username]: {{ game.user.username }}</span>
+
+<span>[Total Sets found]: {{ game.score }}</span>
+
+<span>[First Name]: {{game.user.fname}}</span>
+
+</div>
+
+
+
+
+{% endfor %}
+
+
+
+{% endblock %}
+
+

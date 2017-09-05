@@ -37,6 +37,7 @@ Total Sets Found:<span id='result' class='.score'>0</span>
 $('.cards').hide();
 $('.msg').hide();
 $('#nonset-alert').hide();
+$('#score-btn').hide();
 
 //returns card images in an array called deck
 var deck = $('.cards').map(function(card) {
@@ -66,12 +67,19 @@ var setsFound = 0;
 
 $('#start-timer').on('click', function() {
   var start = new Date;
+  $('#score-btn').show();
 
 setInterval(function() {
     $('.timer').text((new Date - start) / 1000 + " Seconds");
 }, 1000);
 
 });
+
+
+
+
+
+
 
 $('#score-btn').on('click', function() {
 $('.timer').html('0');
